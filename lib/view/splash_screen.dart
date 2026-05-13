@@ -1,11 +1,30 @@
+import 'package:bimashops/controllers/auth_controller.dart';
+import 'package:bimashops/view/main_screen.dart';
+import 'package:bimashops/view/signin_screen.dart';
+import 'package:bimashops/view/widgets/onboarding_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+   SplashScreen({super.key});
+
+final AuthController authController = Get.find<AuthController>();
+
 
   @override
   Widget build(BuildContext context) {
+   // navigasi berdasarkan status login 3 detik setelah splash screen muncul
+   Future.delayed(const Duration(milliseconds: 2500), () {
+    if(authController.isFirstTime){
+      Get.off(() => const OnboardingScreen());
+    }else if(authController.isLoggedIn){
+      Get.off(() => const MainScreen());
+    }else{
+      Get.off(() => SignInScreen());
+    }
+   });
+
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -14,8 +33,8 @@ class SplashScreen extends StatelessWidget {
             end: Alignment.bottomRight,
             colors: [
               Theme.of(context).primaryColor,
-              Theme.of(context).primaryColor.withOpacity(0.8),
-              Theme.of(context).primaryColor.withOpacity(0.6),
+              Theme.of(context).primaryColor.withValues(alpha: 0.8),
+              Theme.of(context).primaryColor.withValues(alpha: 0.6),
             ],
           ),
         ),
@@ -30,6 +49,8 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+
 
             // main content
             Center(
@@ -52,7 +73,7 @@ class SplashScreen extends StatelessWidget {
                               BoxShadow(
                                 color: Theme.of(context)
                                     .primaryColor
-                                    .withOpacity(0.3),
+                                    .withValues(alpha: 0.3),
                                 blurRadius: 20,
                                 offset: const Offset(0, 4),
                               ),
@@ -83,16 +104,63 @@ class SplashScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text(
-                      'Splash Screen',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                    child: Column(
+                      children: [
+                        Text(
+                          "Bima Shops",
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white,
+                            letterSpacing: 8,
+                          ),
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        Text(
+                          "Your one-stop shop for everything",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
+              ),
+            ),
+
+            // bottom tagline
+            Positioned(
+              bottom: 48,
+              left: 0,
+              right: 0,
+              child: TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0.0, end: 1.0),
+                duration: const Duration(milliseconds: 1200),
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: value,
+                    child: Transform.translate(
+                      offset: Offset(0, 20 * (1 - value)),
+                      child: child,
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Welcome to Bima Shops",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    letterSpacing: 2,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white70,
+                  ),
+                ),
               ),
             ),
           ],
@@ -105,10 +173,10 @@ class SplashScreen extends StatelessWidget {
 class GridPattern extends StatelessWidget {
   final Color color;
 
-  const GridPattern({
-    Key? key,
-    required this.color,
-  }) : super(key: key);
+ const GridPattern({
+  super.key,
+  required this.color,
+});
 
   @override
   Widget build(BuildContext context) {
