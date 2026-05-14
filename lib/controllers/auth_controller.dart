@@ -31,6 +31,11 @@ class AuthController extends GetxController {
       _storage.write('isLoggedIn', true);
     }
 
+    void register(){
+      _isLoggedIn.value = true;
+      _storage.write('isLoggedIn', true);
+    }
+
     void logout(){
       _isLoggedIn.value = false;
       _storage.write('isLoggedIn', false);

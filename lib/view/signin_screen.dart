@@ -1,6 +1,10 @@
+import 'package:bimashops/view/sign_up_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../controllers/auth_controller.dart';
 import '../utils/app_textstyles.dart';
+import 'main_screen.dart';
 import 'widgets/custom_textfield.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -53,6 +57,7 @@ class SignInScreen extends StatelessWidget {
                   return null;
                 },
               ),
+              const SizedBox(height: 16),
               // password text field
               CustomTextField(
                 label: 'Password',
@@ -70,10 +75,78 @@ class SignInScreen extends StatelessWidget {
                   return null;
                 },
               ),
+              const SizedBox(height: 8),
+              // forgot password text button
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Forgot Password?',
+                    style: AppTextstyles.withColor(
+                      AppTextstyles.buttonMedium,
+                      Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              // sign in button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _handleSignIn,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    'Sign In',
+                    style: AppTextstyles.withColor(
+                      AppTextstyles.buttonMedium,
+                      Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              // sign up text
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don't have an account?",
+                    style: AppTextstyles.withColor(
+                      AppTextstyles.bodyMedium,
+                      isDark ? Colors.grey[400]! : Colors.grey[600]!,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => Get.to(() => const SignUpScreen()),
+                    child: Text(
+                      'Sign Up',
+                      style: AppTextstyles.withColor(
+                        AppTextstyles.buttonMedium,
+                        Theme.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  // sign in button on pressed
+  void _handleSignIn() {
+    final AuthController authController = Get.find<AuthController>();
+    authController.login();
+    Get.offAll(() => const MainScreen());
   }
 }
