@@ -1,4 +1,6 @@
 import 'package:bimashops/view/widgets/category_chips.dart';
+import 'package:bimashops/view/widgets/product_grid.dart';
+import 'package:bimashops/view/widgets/sale_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,14 +48,14 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   // notification icon
-                  IconButton(
+                  const IconButton(
                     onPressed: null,
-                    icon: const Icon(Icons.notifications_outlined),
+                    icon: Icon(Icons.notifications_outlined),
                   ),
                   // cart button
-                  IconButton(
+                  const IconButton(
                     onPressed: null,
-                    icon: const Icon(Icons.shopping_cart_outlined),
+                    icon: Icon(Icons.shopping_cart_outlined),
                   ),
                   // Theme Button
                   GetBuilder<ThemeController>(
@@ -74,6 +76,42 @@ class HomeScreen extends StatelessWidget {
 
             // category chip
             const CategoryChips(),
+
+            // sale banner
+            const SaleBanner(),
+            
+            // popular product
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Popular Product',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: null,
+                    child: const Text(
+                      'see all',
+                      style: TextStyle(
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // product grid
+            Expanded(
+              child: ProductGrid(),
+            ),
           ],
         ),
       ),
