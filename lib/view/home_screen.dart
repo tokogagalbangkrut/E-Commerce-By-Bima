@@ -1,3 +1,4 @@
+import 'package:bimashops/view/widgets/category_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -70,6 +71,9 @@ class HomeScreen extends StatelessWidget {
             ),
             // search bar
             const CustomSearchBar(),
+
+            // category chip
+            const CategoryChips(),
           ],
         ),
       ),

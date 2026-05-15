@@ -5,17 +5,30 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16),
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    return Padding(
+      padding: const EdgeInsets.all(16),
       child: TextField(
         decoration: InputDecoration(
           hintText: 'Cari produk, kategori, atau merek',
-          prefixIcon: Icon(Icons.search),
+          hintStyle: TextStyle(
+            color: isDark ? Colors.grey[400] : Colors.grey[600],
+          ),
+          prefixIcon: const Icon(Icons.search),
           filled: true,
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+          fillColor: Theme.of(context).cardColor,
+          contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(
+              color: Theme.of(context).primaryColor,
+              width: 1,
+            ),
           ),
         ),
       ),
