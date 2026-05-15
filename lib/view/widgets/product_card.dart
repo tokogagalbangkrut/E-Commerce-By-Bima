@@ -5,6 +5,10 @@ class ProductCard extends StatelessWidget {
   final Product product;
   const ProductCard({super.key, required this.product});
 
+  String formatRupiah(double price) {
+    return 'Rp ${price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (Match match) => '${match[1]}.')}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -85,39 +89,56 @@ class ProductCard extends StatelessWidget {
           ),
           // product details
           Padding(
-            padding: EdgeInsets.all(screenWidth * 0.02),
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   product.name,
                   style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
                     color: Theme.of(context).textTheme.bodyLarge!.color,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  product.category,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: isDark ? Colors.grey[400] : Colors.grey[600],
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: screenWidth * 0.01),
-                Text(
-                  product.category,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: isDark ? Colors.grey[400] : Colors.grey[600],
-                  ),
-                ),
-                SizedBox(height: screenWidth * 0.01),
+                const SizedBox(height: 8),
                 Row(
                   children: [
                     Text(
-                      '\$${product.price.toStringAsFixed(2)}',
+                      formatRupiah(product.price),
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).textTheme.bodyLarge!.color,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
+                    if (product.oldPrice != null) ...[
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          formatRupiah(product.oldPrice!),
+                          style: TextStyle(
+                            fontSize: 11,
+                            decoration: TextDecoration.lineThrough,
+                            color: isDark ? Colors.grey[500] : Colors.grey[600],
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ],
