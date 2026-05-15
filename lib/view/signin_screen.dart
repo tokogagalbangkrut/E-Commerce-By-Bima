@@ -1,4 +1,5 @@
 import 'package:bimashops/view/sign_up_screen.dart';
+import 'package:bimashops/view/forgot_password_screen.dart'; 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -80,7 +81,7 @@ class SignInScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => Get.to(() =>  ForgotPasswordScreen()),
                   child: Text(
                     'Forgot Password?',
                     style: AppTextstyles.withColor(
@@ -125,7 +126,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                    onPressed: () => Get.to(() => const SignUpScreen()),
+                    onPressed: () => Get.to(() =>  SignUpScreen()),
                     child: Text(
                       'Sign Up',
                       style: AppTextstyles.withColor(
@@ -147,6 +148,6 @@ class SignInScreen extends StatelessWidget {
   void _handleSignIn() {
     final AuthController authController = Get.find<AuthController>();
     authController.login();
-    Get.offAll(() => const MainScreen());
+    Get.off(() => const MainScreen());
   }
 }

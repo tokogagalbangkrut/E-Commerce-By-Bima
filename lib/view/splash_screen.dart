@@ -5,24 +5,33 @@ import 'package:bimashops/view/widgets/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SplashScreen extends StatelessWidget {
-   SplashScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
-final AuthController authController = Get.find<AuthController>();
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
+class _SplashScreenState extends State<SplashScreen> {
+  final AuthController authController = Get.find<AuthController>();
+
+  @override
+  void initState() {
+    super.initState();
+    // navigasi berdasarkan status login 3 detik setelah splash screen muncul
+    Future.delayed(const Duration(milliseconds: 2500), () {
+      if(authController.isFirstTime){
+        Get.off(() => const OnboardingScreen());
+      }else if(authController.isLoggedIn){
+        Get.off(() => const MainScreen());
+      }else{
+        Get.off(() => SignInScreen());
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-   // navigasi berdasarkan status login 3 detik setelah splash screen muncul
-   Future.delayed(const Duration(milliseconds: 2500), () {
-    if(authController.isFirstTime){
-      Get.off(() => const OnboardingScreen());
-    }else if(authController.isLoggedIn){
-      Get.off(() => const MainScreen());
-    }else{
-      Get.off(() => SignInScreen());
-    }
-   });
 
 
     return Scaffold(
