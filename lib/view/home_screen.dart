@@ -1,3 +1,4 @@
+import 'package:bimashops/view/all_products_screen.dart';
 import 'package:bimashops/view/widgets/category_chips.dart';
 import 'package:bimashops/view/widgets/product_grid.dart';
 import 'package:bimashops/view/widgets/sale_banner.dart';
@@ -97,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: null,
+                    onTap: () => Get.to(()=> AllProductsScreen()),
                     child: const Text(
                       'see all',
                       style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:bimashops/models/product.dart';
+import 'package:bimashops/utils/app_textstyles.dart';
 import 'package:bimashops/view/widgets/size_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
@@ -145,6 +146,67 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(screenWidth * 0.04),
+          child: Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () {},
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                      vertical: screenHeight * 0.02,
+                      horizontal: 8,
+                    ),
+                    side: BorderSide(
+                      color: isDark ? Colors.white70 : Colors.black12,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Text(
+                    'Tambah Ke Keranjang',
+                    style: AppTextstyles.withColor(
+                      AppTextstyles.buttonMedium,
+                      Theme.of(context).textTheme.bodyLarge!.color!,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                  ),
+                ),
+              ),
+              SizedBox(width: screenWidth * 0.04),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    foregroundColor: Colors.white,
+                    padding: EdgeInsets.symmetric(
+                      vertical: screenHeight * 0.02,
+                      horizontal: 8,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Text(
+                    'Beli Sekarang',
+                    style: AppTextstyles.withColor(
+                      AppTextstyles.buttonMedium,
+                      Colors.white,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
