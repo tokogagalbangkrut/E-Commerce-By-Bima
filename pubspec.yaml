@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^6.0.0
   get: ^4.6.7
   get_storage: ^2.0.3
+  share_plus: ^10.0.2
 
 dev_dependencies:
   flutter_test:
