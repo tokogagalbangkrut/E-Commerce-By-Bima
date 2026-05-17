@@ -58,7 +58,7 @@ class FilterBottomSheet {
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: 'Min',
-                        prefixText: '\$',
+                        prefixText: 'Rp ',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(
@@ -74,7 +74,7 @@ class FilterBottomSheet {
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: 'Max',
-                        prefixText: '\$',
+                        prefixText: 'Rp ',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(

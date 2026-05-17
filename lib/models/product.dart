@@ -35,7 +35,7 @@ final List<Product> products = [
     oldPrice: 1200000,
     imageUrl: 'assets/images/laptop.jpg',
     description: 'Laptop Gaming Dengan Processor AMD RYZEN 9HX RTX 5090',
-    isFavorite: false,
+    isFavorite: true,
   ),
   const Product(
     name: 'Jordan Shoes',

@@ -4,6 +4,10 @@ import 'package:bimashops/view/widgets/size_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
+String formatRupiah(double price) {
+  return 'Rp ${price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (Match match) => '${match[1]}.')}';
+}
+
 class ProductDetailsScreen extends StatelessWidget {
   final Product product;
   const ProductDetailsScreen({super.key, required this.product});
@@ -97,7 +101,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '\$${product.price.toStringAsFixed(2)}',
+                        formatRupiah(product.price),
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,

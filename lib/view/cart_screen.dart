@@ -2,6 +2,10 @@ import 'package:bimashops/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+String formatRupiah(double price) {
+  return 'Rp ${price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+(?!\d))'), (Match match) => '${match[1]}.')}';
+}
+
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
@@ -109,7 +113,7 @@ class CartScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$${product.price}',
+                        formatRupiah(product.price),
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
