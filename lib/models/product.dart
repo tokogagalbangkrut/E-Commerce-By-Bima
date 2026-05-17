@@ -44,7 +44,7 @@ final List<Product> products = [
     oldPrice: 1200000,
     imageUrl: 'assets/images/shoe2.jpg',
     description: 'Sepatu Jordan Kualitas Terbaik Original Dari Amerika',
-    isFavorite: false,
+    isFavorite: true,
   ),
   const Product(
     name: 'Puma',
@@ -53,6 +53,6 @@ final List<Product> products = [
     oldPrice: 700000,
     imageUrl: 'assets/images/shoes2.jpg',
     description: 'Sepatu Puma Dengan Kualitas Terbaik Di Import Langsung Dari Amerika',
-    isFavorite: false,
+    isFavorite: true,
   ),
 ];
