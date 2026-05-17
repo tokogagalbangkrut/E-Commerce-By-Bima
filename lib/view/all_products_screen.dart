@@ -1,4 +1,5 @@
 import 'package:bimashops/view/widgets/filter_bottom_sheet.dart';
+import 'package:bimashops/view/widgets/product_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,6 +46,9 @@ class AllProductsScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      body: const ProductGrid(
+        
       ),
     );
   }

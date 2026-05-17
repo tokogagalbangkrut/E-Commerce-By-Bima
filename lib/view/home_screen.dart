@@ -1,4 +1,5 @@
 import 'package:bimashops/view/all_products_screen.dart';
+import 'package:bimashops/view/cart_screen.dart';
 import 'package:bimashops/view/widgets/category_chips.dart';
 import 'package:bimashops/view/widgets/product_grid.dart';
 import 'package:bimashops/view/widgets/sale_banner.dart';
@@ -54,9 +55,9 @@ class HomeScreen extends StatelessWidget {
                     icon: Icon(Icons.notifications_outlined),
                   ),
                   // cart button
-                  const IconButton(
-                    onPressed: null,
-                    icon: Icon(Icons.shopping_cart_outlined),
+                  IconButton(
+                    onPressed: () => Get.to(() => const CartScreen()),
+                    icon: const Icon(Icons.shopping_cart_outlined),
                   ),
                   // Theme Button
                   GetBuilder<ThemeController>(
